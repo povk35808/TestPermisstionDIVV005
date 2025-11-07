@@ -1,112 +1,65 @@
 /* --- General Styles --- */
 body {
-    font-family: 'Kantumruy Pro', sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    font-family: 'Kantumruy Pro', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
-
-/* === START: NEW Glassmorphism Effect (ជំហានទី ០) === */
-/* កំណត់រូបភាព Background សម្រាប់ Body */
-body.bg-gray-100 {
-    /*         !!!!!!! សំខាន់ !!!!!!!
-        សូមជំនួស URL ខាងក្រោមនេះ ជាមួយនឹងរូបភាព Background ផ្ទាល់ខ្លួនរបស់អ្នក
-    */
-    background-image: url('https://images.unsplash.com/photo-1619204718222-2d5d81373502?q=80&w=1974&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* ធ្វើឱ្យ Background ឈរនៅស្ងៀមពេល Scroll */
-}
-
-/* ធ្វើឱ្យផ្ទៃខាងក្រោយរបស់ App ថ្លា ដើម្បីឱ្យឃើញរូបភាព */
-#main-app-container, #page-login {
-    background-color: transparent !important;
-}
-
-/* ធ្វើឱ្យទំព័រនីមួយៗមានផ្ទៃខាងក្រោយថ្លាបន្តិច (ដើម្បីឱ្យអក្សរនៅតែអាចអានបាន) */
-#page-home, #page-account, #page-help, #page-approver {
-    background-color: rgba(255, 255, 255, 0.5); /* ពណ៌ស ថ្លា 50% */
-}
-#page-history, #page-request-leave, #page-request-out {
-    background-color: rgba(249, 250, 251, 0.5); /* ពណ៌ប្រផេះ ថ្លា 50% (bg-gray-50) */
-}
-/* === END: NEW Glassmorphism Effect (ជំហានទី ០) === */
-
-
-/* === START: NEW Glassmorphism Class (ជំហានទី ១) === */
-.glassmorphism {
-    /* ពណ៌ផ្ទៃខាងក្រោយ (ពណ៌ស ថ្លា 50%) */
-    background-color: rgba(255, 255, 255, 0.5) !important;
-    
-    /* បែបផែន Blur (ព្រាល) */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px); /* សម្រាប់ Safari/iOS */
-    
-    /* ធ្វើឱ្យគែម (border) មើលទៅដូចកញ្ចក់ */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    
-    /* បន្ថែមស្រមោល (shadow) បន្តិច */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Fallback សម្រាប់ Browser ចាស់ (ដូចជា Firefox) ដែលមិនគាំទ្រ backdrop-filter */
-@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
-  .glassmorphism {
-    /* ប្រើពណ៌សដិតជាងមុន បើមិនអាច Blur បាន */
-    background-color: rgba(255, 255, 255, 0.9) !important;
-  }
-}
-/* === END: NEW Glassmorphism Class === */
-
 
 /* --- Dropdown Scrollbar --- */
 .dropdown-list {
-    scrollbar-width: thin;
-    scrollbar-color: #9ca3af #f3f4f6;
+    scrollbar-width: thin;
+    scrollbar-color: #9ca3af #f3f4f6;
 }
 .dropdown-list::-webkit-scrollbar {
-    width: 6px;
+    width: 6px;
 }
 .dropdown-list::-webkit-scrollbar-track {
-    background: #f3f4f6;
-    border-radius: 10px;
+    background: #f3f4f6;
+    border-radius: 10px;
 }
 .dropdown-list::-webkit-scrollbar-thumb {
-    background-color: #9ca3af;
-    border-radius: 10px;
-    border: 2px solid #f3f4f6;
+    background-color: #9ca3af;
+    border-radius: 10px;
+    border: 2px solid #f3f4f6;
 }
 
 /* --- Loading Spinner --- */
 .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border-left-color: #09f;
-    animation: spin 1s ease infinite;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s ease infinite;
 }
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* --- Page Min Height --- */
 #page-request-leave, #page-request-out {
-    min-height: 100vh;
+    min-height: 100vh;
 }
 
 /* === START: MODIFICATION (History Tab Redesign) === */
+
+/* Old border-bottom style (Removed) */
+/*
+.history-tab.active { ... }
+.history-tab { ... }
+*/
+
 /* New Segmented Control Style for History Page */
 .history-tab {
-    /* Default (inactive) state */
-    color: #374151; /* gray-700 */
-    background-color: transparent;
+    /* Default (inactive) state */
+    color: #374151; /* gray-700 */
+    background-color: transparent;
 }
-/* === MODIFIED for Glassmorphism (ជំហានទី ៣) === */
 .history-tab.active {
-    /* Active state */
-    color: #1e40af; /* blue-800 */
-    background-color: rgba(255, 255, 255, 0.85); /* ពណ៌ស ថ្លា 85% */
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    /* Active state */
+    color: #1e40af; /* blue-800 */
+    background-color: #ffffff; /* white */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 /* === END: MODIFICATION (History Tab Redesign) === */
 
@@ -114,35 +67,35 @@ body.bg-gray-100 {
 /* === START: Approver Tab Styles (Kept) === */
 /* Style សម្រាប់ Approver Tabs (រក្សាភាពស៊ីគ្នា) */
 .approver-tab {
-    border-bottom-width: 3px;
-    border-color: transparent;
-    color: #6b7280; /* gray-500 for inactive */
-    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom-width: 3px;
+    border-color: transparent;
+    color: #6b7280; /* gray-500 for inactive */
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 /* Active style for Approver tabs (Admin-facing) */
 .approver-tab.active {
-    border-color: #ef4444; /* red-500 */
-    color: #ef4444;
+    border-color: #ef4444; /* red-500 */
+    color: #ef4444;
 }
 /* === END: Approver Tab Styles === */
 
 
 /* --- Face Scan Styles --- */
 .scan-overlay {
-    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
-    width: 70%;
-    height: 85%;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    height: 85%;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #video, #return-video {
-    transform: scaleX(-1);
-    will-change: transform;
-    object-fit: cover;
+    transform: scaleX(-1);
+    will-change: transform;
+    object-fit: cover;
 }
 
 
@@ -157,10 +110,10 @@ body.bg-gray-100 {
 
 /* === START: Bottom Nav Active Style (Kept) === */
 .nav-btn {
-    transition: color 0.2s ease, transform 0.1s ease;
+    transition: color 0.2s ease, transform 0.1s ease;
 }
 /* This applies the 'pop' effect when Tailwind adds the 'text-blue-600' class via JS */
 .nav-btn.text-blue-600 {
-    transform: scale(1.1);
+    transform: scale(1.1);
 }
 /* === END: Bottom Nav Active Style === */
