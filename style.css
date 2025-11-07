@@ -183,3 +183,40 @@ body.bg-gray-100 { background-color: transparent !important; }
 }
 
 /* === END: ថ្មី (Background & Glassmorphism Fix) === */
+/* === START: មុខងារថ្មី (កែពណ៌អក្សរ ให้อ่านง่าย) === */
+
+/* ធ្វើឲ្យអក្សរមានស្រមោល (Shadow) ដើម្បីងាយស្រួលអាន */
+h1, h2, h3, p, label, span, button, .text-gray-500, .text-gray-600, .text-gray-700, .text-gray-800, .text-gray-900, .text-blue-800, .text-green-800, .text-red-800 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ប្តូរពណ៌អក្សរសំខាន់ៗ ទៅជាពណ៌ស ឬ ពណ៌ស្រាល */
+.text-gray-700, .text-gray-800, .text-blue-800 {
+    color: #FFFFFF !important; /* ពណ៌ស */
+}
+
+.text-gray-500, .text-gray-600 {
+    color: #E5E7EB !important; /* ពណ៌ប្រផេះស្រាល */
+}
+
+/* កែពណ៌អក្សរខ្មៅ នៅក្នុង Card Glassmorphism ឲ្យកាន់តែច្បាស់ */
+.bg-white.border.border-gray-200.rounded-xl.shadow-sm p,
+#login-form-container label,
+#page-account .bg-white p,
+#page-account .bg-white span
+{
+    color: #1f2937 !important; /* ពណ៌ខ្មៅច្បាស់ */
+    text-shadow: none !important; /* ដក Shadow ចេញ ពេលនៅក្នុង Card */
+}
+/* លើកលែងតែ ID បុគ្គលិក */
+#page-account #user-id {
+    color: #4b5563 !important;
+}
+
+/* ធានាថាឈ្មោះនៅទំព័រដើម ពណ៌ស ច្បាស់ */
+#home-user-name {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* === END: មុខងារថ្មី (កែពណ៌អក្សរ) === */
