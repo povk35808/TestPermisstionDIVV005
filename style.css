@@ -117,3 +117,66 @@ body {
     transform: scale(1.1);
 }
 /* === END: Bottom Nav Active Style === */
+/* === START: ថ្មី (Background & Glassmorphism) === */
+
+/* 1. ដាក់រូបភាពផ្ទៃខាងក្រោយ (Background Image) */
+#page-login,
+#main-app-container {
+    /* ផ្ទៃ​ខាង​ក្រោយ​ថេរ មិន​រមូរ​តាម​មាតិកា */
+    background-image: url('https://i.postimg.cc/6p1ChQ56/pexels-phallin-rath-442903387-15412787.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* 2. លុបផ្ទៃខាងក្រោយពណ៌ស/ប្រផេះ ដែលមានពីមុន */
+body.bg-gray-100 { background-color: transparent; }
+#page-login.bg-gray-50 { background-color: transparent; }
+#main-app-container.bg-white { background-color: transparent; }
+#page-history, #page-request-leave, #page-request-out, #page-approver {
+    background-color: transparent !important;
+}
+
+/* 3. បង្កើត Class សម្រាប់ "បែបផែនកញ្ចក់" (Glass Effect) */
+
+/* សម្រាប់ Card, ផ្ទាំង Form, និង Nav Bar */
+.glass-card {
+    background-color: rgba(255, 255, 255, 0.65) !important; /* ស ៦៥% */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* រក្សា shadow ពី Tailwind */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* សម្រាប់ប៊ូតុងធំៗ (ទំព័រដើម) */
+.glass-button {
+    background-color: rgba(255, 255, 255, 0.5) !important; /* ស ៥០% */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s ease;
+}
+.glass-button:hover {
+    background-color: rgba(255, 255, 255, 0.75) !important; /* ស ៧៥% ពេល Hover */
+}
+
+/* សម្រាប់ Modal (ថ្លាជាងមុនបន្តិច) */
+.glass-modal {
+    background-color: rgba(255, 255, 255, 0.85) !important; /* ស ៨៥% */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. កែសម្រួល History Tab ឲ្យសមនឹង Glass Effect */
+.history-tab.active {
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* === END: ថ្មី (Background & Glassmorphism) === */
