@@ -1,182 +1,185 @@
 /* --- General Styles --- */
 body {
-    font-family: 'Kantumruy Pro', sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    font-family: 'Kantumruy Pro', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    
+    /* === START: ថ្មី (Background Fix) === */
+    /* 1. ដាក់ Background Image លើ BODY */
+    background-image: url('https://i.postimg.cc/6p1ChQ56/pexels-phallin-rath-442903387-15412787.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    /* === END: ថ្មី (Background Fix) === */
 }
 
 /* --- Dropdown Scrollbar --- */
 .dropdown-list {
-    scrollbar-width: thin;
-    scrollbar-color: #9ca3af #f3f4f6;
+    scrollbar-width: thin;
+    scrollbar-color: #9ca3af #f3f4f6;
 }
 .dropdown-list::-webkit-scrollbar {
-    width: 6px;
+    width: 6px;
 }
 .dropdown-list::-webkit-scrollbar-track {
-    background: #f3f4f6;
-    border-radius: 10px;
+    background: #f3f4f6;
+    border-radius: 10px;
 }
 .dropdown-list::-webkit-scrollbar-thumb {
-    background-color: #9ca3af;
-    border-radius: 10px;
-    border: 2px solid #f3f4f6;
+    background-color: #9ca3af;
+    border-radius: 10px;
+    border: 2px solid #f3f4f6;
 }
 
 /* --- Loading Spinner --- */
 .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border-left-color: #09f;
-    animation: spin 1s ease infinite;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s ease infinite;
 }
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* --- Page Min Height --- */
 #page-request-leave, #page-request-out {
-    min-height: 100vh;
+    min-height: 100vh;
 }
 
-/* === START: MODIFICATION (History Tab Redesign) === */
-
-/* Old border-bottom style (Removed) */
-/*
-.history-tab.active { ... }
-.history-tab { ... }
-*/
-
-/* New Segmented Control Style for History Page */
+/* === START: History Tab Redesign (Segmented) === */
 .history-tab {
-    /* Default (inactive) state */
-    color: #374151; /* gray-700 */
-    background-color: transparent;
+    color: #374151; /* gray-700 */
+    background-color: transparent;
 }
 .history-tab.active {
-    /* Active state */
-    color: #1e40af; /* blue-800 */
-    background-color: #ffffff; /* white */
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    color: #1e40af; /* blue-800 */
+    /* === START: ថ្មី (Glass Tweak) === */
+    /* ធ្វើឲ្យ Tab ថ្លា ពេល Active */
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    /* === END: ថ្មី (Glass Tweak) === */
 }
-/* === END: MODIFICATION (History Tab Redesign) === */
+/* === END: History Tab Redesign === */
 
 
 /* === START: Approver Tab Styles (Kept) === */
-/* Style សម្រាប់ Approver Tabs (រក្សាភាពស៊ីគ្នា) */
 .approver-tab {
-    border-bottom-width: 3px;
-    border-color: transparent;
-    color: #6b7280; /* gray-500 for inactive */
-    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom-width: 3px;
+    border-color: transparent;
+    color: #6b7280; /* gray-500 for inactive */
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
-/* Active style for Approver tabs (Admin-facing) */
 .approver-tab.active {
-    border-color: #ef4444; /* red-500 */
-    color: #ef4444;
+    border-color: #ef4444; /* red-500 */
+    color: #ef4444;
 }
 /* === END: Approver Tab Styles === */
 
 
 /* --- Face Scan Styles --- */
 .scan-overlay {
-    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
-    width: 70%;
-    height: 85%;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    height: 85%;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-
 #video, #return-video {
-    transform: scaleX(-1);
-    will-change: transform;
-    object-fit: cover;
+    transform: scaleX(-1);
+    will-change: transform;
+    object-fit: cover;
 }
 
 
 /* === START: REMOVED (Attendance Page Styles) === */
-/*
-#page-daily-attendance { ... }
-#attendance-iframe-container { ... }
-#attendance-iframe { ... }
-*/
+/* (Removed) */
 /* === END: REMOVED (Attendance Page Styles) === */
 
 
 /* === START: Bottom Nav Active Style (Kept) === */
 .nav-btn {
-    transition: color 0.2s ease, transform 0.1s ease;
+    transition: color 0.2s ease, transform 0.1s ease;
 }
-/* This applies the 'pop' effect when Tailwind adds the 'text-blue-600' class via JS */
 .nav-btn.text-blue-600 {
-    transform: scale(1.1);
+    transform: scale(1.1);
 }
 /* === END: Bottom Nav Active Style === */
-/* === START: ថ្មី (Background & Glassmorphism) === */
 
-/* 1. ដាក់រូបភាពផ្ទៃខាងក្រោយ (Background Image) */
-#page-login,
-#main-app-container {
-    /* ផ្ទៃ​ខាង​ក្រោយ​ថេរ មិន​រមូរ​តាម​មាតិកា */
-    background-image: url('https://i.postimg.cc/6p1ChQ56/pexels-phallin-rath-442903387-15412787.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
+
+/* === START: ថ្មី (Background & Glassmorphism Fix) === */
 
 /* 2. លុបផ្ទៃខាងក្រោយពណ៌ស/ប្រផេះ ដែលមានពីមុន */
-body.bg-gray-100 { background-color: transparent; }
-#page-login.bg-gray-50 { background-color: transparent; }
-#main-app-container.bg-white { background-color: transparent; }
-#page-history, #page-request-leave, #page-request-out, #page-approver {
-    background-color: transparent !important;
+body.bg-gray-100 { background-color: transparent !important; }
+#page-login.bg-gray-50 { background-color: transparent !important; }
+#main-app-container.bg-white { background-color: transparent !important; }
+
+/* ត្រូវតែលុប background ចេញពី #page-login និង #main-app-container ផងដែរ */
+/* នេះជាចំណុចកែ ធំបំផុត! */
+#page-login,
+#main-app-container {
+    background-image: none;
+    background-color: transparent !important;
 }
 
-/* 3. បង្កើត Class សម្រាប់ "បែបផែនកញ្ចក់" (Glass Effect) */
+/* 3. ទុក Page ខាងក្នុងឲ្យថ្លា */
+#page-history, #page-request-leave, #page-request-out, #page-approver {
+    background-color: transparent !important;
+}
+
+/* 4. បង្កើត Class សម្រាប់ "បែបផែនកញ្ចក់" (Glass Effect) */
 
 /* សម្រាប់ Card, ផ្ទាំង Form, និង Nav Bar */
 .glass-card {
-    background-color: rgba(255, 255, 255, 0.65) !important; /* ស ៦៥% */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    /* រក្សា shadow ពី Tailwind */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.65) !important; /* ស ៦៥% */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* រក្សា shadow ពី Tailwind */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* សម្រាប់ប៊ូតុងធំៗ (ទំព័រដើម) */
 .glass-button {
-    background-color: rgba(255, 255, 255, 0.5) !important; /* ស ៥០% */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.5) !important; /* ស ៥០% */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s ease;
 }
 .glass-button:hover {
-    background-color: rgba(255, 255, 255, 0.75) !important; /* ស ៧៥% ពេល Hover */
+    background-color: rgba(255, 255, 255, 0.75) !important; /* ស ៧៥% ពេល Hover */
 }
 
 /* សម្រាប់ Modal (ថ្លាជាងមុនបន្តិច) */
 .glass-modal {
-    background-color: rgba(255, 255, 255, 0.85) !important; /* ស ៨៥% */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.85) !important; /* ស ៨៥% */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* 4. កែសម្រួល History Tab ឲ្យសមនឹង Glass Effect */
-.history-tab.active {
-    background-color: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+/* 5. បង្ខំ Card ដែលបង្កើតដោយ JS ឲ្យថ្លា */
+#history-container-leave > div,
+#history-container-out > div,
+#approver-container-pending > div,
+#approver-container-history > div {
+    background-color: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* === END: ថ្មី (Background & Glassmorphism) === */
+/* === END: ថ្មី (Background & Glassmorphism Fix) === */
