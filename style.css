@@ -1,44 +1,44 @@
 /* --- General Styles --- */
 body {
-    font-family: 'Kantumruy Pro', sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    font-family: 'Kantumruy Pro', sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* --- Dropdown Scrollbar --- */
 .dropdown-list {
-    scrollbar-width: thin;
-    scrollbar-color: #9ca3af #f3f4f6;
+    scrollbar-width: thin;
+    scrollbar-color: #9ca3af #f3f4f6;
 }
 .dropdown-list::-webkit-scrollbar {
-    width: 6px;
+    width: 6px;
 }
 .dropdown-list::-webkit-scrollbar-track {
-    background: #f3f4f6;
-    border-radius: 10px;
+    background: #f3f4f6;
+    border-radius: 10px;
 }
 .dropdown-list::-webkit-scrollbar-thumb {
-    background-color: #9ca3af;
-    border-radius: 10px;
-    border: 2px solid #f3f4f6;
+    background-color: #9ca3af;
+    border-radius: 10px;
+    border: 2px solid #f3f4f6;
 }
 
 /* --- Loading Spinner --- */
 .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border-left-color: #09f;
-    animation: spin 1s ease infinite;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s ease infinite;
 }
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* --- Page Min Height --- */
 #page-request-leave, #page-request-out {
-    min-height: 100vh;
+    min-height: 100vh;
 }
 
 /* === START: MODIFICATION (History Tab Redesign) === */
@@ -51,15 +51,15 @@ body {
 
 /* New Segmented Control Style for History Page */
 .history-tab {
-    /* Default (inactive) state */
-    color: #374151; /* gray-700 */
-    background-color: transparent;
+    /* Default (inactive) state */
+    color: #374151; /* gray-700 */
+    background-color: transparent;
 }
 .history-tab.active {
-    /* Active state */
-    color: #1e40af; /* blue-800 */
-    background-color: #ffffff; /* white */
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    /* Active state */
+    color: #1e40af; /* blue-800 */
+    background-color: #ffffff; /* white */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 /* === END: MODIFICATION (History Tab Redesign) === */
 
@@ -67,35 +67,35 @@ body {
 /* === START: Approver Tab Styles (Kept) === */
 /* Style សម្រាប់ Approver Tabs (រក្សាភាពស៊ីគ្នា) */
 .approver-tab {
-    border-bottom-width: 3px;
-    border-color: transparent;
-    color: #6b7280; /* gray-500 for inactive */
-    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom-width: 3px;
+    border-color: transparent;
+    color: #6b7280; /* gray-500 for inactive */
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 /* Active style for Approver tabs (Admin-facing) */
 .approver-tab.active {
-    border-color: #ef4444; /* red-500 */
-    color: #ef4444;
+    border-color: #ef4444; /* red-500 */
+    color: #ef4444;
 }
 /* === END: Approver Tab Styles === */
 
 
 /* --- Face Scan Styles --- */
 .scan-overlay {
-    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
-    width: 70%;
-    height: 85%;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    height: 85%;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #video, #return-video {
-    transform: scaleX(-1);
-    will-change: transform;
-    object-fit: cover;
+    transform: scaleX(-1);
+    will-change: transform;
+    object-fit: cover;
 }
 
 
@@ -110,104 +110,10 @@ body {
 
 /* === START: Bottom Nav Active Style (Kept) === */
 .nav-btn {
-    transition: color 0.2s ease, transform 0.1s ease;
+    transition: color 0.2s ease, transform 0.1s ease;
 }
 /* This applies the 'pop' effect when Tailwind adds the 'text-blue-600' class via JS */
 .nav-btn.text-blue-600 {
-    transform: scale(1.1);
+    transform: scale(1.1);
 }
 /* === END: Bottom Nav Active Style === */
-
-/* === START: មុខងារថ្មី (Glassmorphism & Background) === */
-
-/* --- ១. ផ្ទៃខាងក្រោយ (Background) --- */
-#app-background {
-  background-image: url('https://i.postimg.cc/6p1ChQ56/pexels-phallin-rath-442903387-15412787.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed; /* សំខាន់! ធ្វើឲ្យរូបភាពនៅស្ងៀមពេល Scroll */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1; /* ដាក់វានៅខាងក្រោយគេបង្អស់ */
-}
-
-/* --- ២. អនុវត្ត Glass ទៅលើ Cards --- */
-/* កូដនេះនឹង override class របស់ Tailwind ដោយស្វ័យប្រវត្តិ */
-
-/* History & Approver Cards (ដែលបង្កើតដោយ JS) */
-.bg-white.border.border-gray-200.rounded-xl.shadow-sm, /* History Card */
-.bg-white.border.border-gray-200.rounded-lg.shadow-sm, /* Approver Card & Request User Info */
-
-/* Account Page Card */
-#page-account .bg-white.rounded-lg.shadow-md,
-
-/* Home Page Approver Card */
-#page-home section[class="mt-8"] .bg-white.border.border-gray-300,
-
-/* Login Form Container */
-#login-form-container
-{
-  background-color: rgba(255, 255, 255, 0.45) !important; /* ពណ៌ស ថ្លា 45% */
-  backdrop-filter: blur(15px); /* ធ្វើឲ្យព្រាល (Blur) ផ្ទៃខាងក្រោយ */
-  -webkit-backdrop-filter: blur(15px); /* សម្រាប់ Safari */
-  border: 1px solid rgba(255, 255, 255, 0.2) !important; /* គែម (border) ពណ៌ស ថ្លា */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important; /* ស្រមោល (Shadow) ស្រាល */
-}
-
-/* --- ៣. អនុវត្ត Glass ទៅលើ Buttons & Nav --- */
-
-/* Home Page Buttons */
-#open-leave-request-btn,
-#open-out-request-btn,
-#open-approver-dashboard-btn {
-  background-color: rgba(255, 255, 255, 0.3) !important; /* ថ្លាជាងមុនបន្តិច */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* History Tabs (Segmented Control) */
-.bg-gray-200.p-1.rounded-xl {
-  background-color: rgba(255, 255, 255, 0.3) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-}
-/* Active tab ត្រូវតែនៅពណ៌សដដែល */
-.history-tab.active {
-    background-color: #ffffff !important; 
-}
-
-/* Bottom Navigation */
-#bottom-navigation {
-  background-color: rgba(255, 255, 255, 0.6) !important; /* ថ្លា 60% */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
-}
-
-/* --- ៤. កែសម្រួល Form Inputs ឲ្យស្រដៀងគ្នា --- */
-input[type="text"],
-input[type="date"] {
-   background-color: rgba(255, 255, 255, 0.6) !important;
-   border: 1px solid rgba(255, 255, 255, 0.3) !important;
-   color: #1f2937 !important; /* ធានាថាអក្សរពណ៌ខ្មៅច្បាស់ */
-}
-/* ធ្វើឲ្យ placeholder មើលឃើញច្បាស់ */
-::placeholder {
-    color: #4b5563 !important;
-    opacity: 1; 
-}
-
-/* ជួសជុលពណ៌អក្សរ Dropdown ពេលព្រាល (Blur) */
-.dropdown-list {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-/* === END: មុខងារថ្មី (Glassmorphism) === */
