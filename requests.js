@@ -305,54 +305,58 @@ function renderHistoryList(snapshot, container, placeholder, type, elements, ale
 /**
  * បង្កើត HTML សម្រាប់ History Card មួយ
  */
-function renderHistoryCard(request, type) { 
-    if (!request || !request.requestId) return ''; 
-    let statusColor, statusText, decisionInfo = ''; 
-    switch(request.status) { 
-        case 'approved': statusColor = 'bg-green-100 text-green-800'; statusText = 'បានយល់ព្រម'; if (request.decisionAt) decisionInfo = `<p class="text-xs text-green-600 mt-1">នៅម៉ោង: ${Utils.formatFirestoreTimestamp(request.decisionAt, 'time')}</p>`; break; 
-        case 'rejected': statusColor = 'bg-red-100 text-red-800'; statusText = 'បានបដិសធ'; if (request.decisionAt) decisionInfo = `<p class="text-xs text-red-600 mt-1">នៅម៉ោង: ${Utils.formatFirestoreTimestamp(request.decisionAt, 'time')}</p>`; break; 
-        case 'editing': statusColor = 'bg-blue-100 text-blue-800'; statusText = 'កំពុងកែសម្រួល'; break; 
-        default: statusColor = 'bg-yellow-100 text-yellow-800'; statusText = 'កំពុងរង់ចាំ'; 
-    } 
-    const dateString = (request.startDate === request.endDate) ? request.startDate : (request.startDate && request.endDate ? `${request.startDate} ដល់ ${request.endDate}` : 'N/A'); 
-    const showActions = (request.status === 'pending' || request.status === 'editing'); 
-    let returnInfo = ''; 
-    let returnButton = ''; 
-    if (type === 'out') { 
-        if (request.returnStatus === 'បានចូលមកវិញ') returnInfo = `<p class="text-sm font-semibold text-green-700 mt-2">✔️ បានចូលមកវិញ: ${request.returnedAt || ''}</p>`; 
-        else if (request.status === 'approved') returnButton = `<button data-id="${request.requestId}" class="return-btn w-full mt-3 py-2 px-3 bg-green-600 text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-green-700">បញ្ជាក់ចូលមកវិញ</button>`; 
-    } 
-    let invoiceButton = ''; 
-    if (request.status === 'approved') invoiceButton = `<button data-id="${request.requestId}" data-type="${type}" class="invoice-btn mt-3 py-1.5 px-3 bg-indigo-100 text-indigo-700 rounded-md font-semibold text-xs shadow-sm hover:bg-indigo-200 w-full sm:w-auto">ពិនិត្យមើលវិក័យប័ត្រ</button>`; 
-    
-    // === MODIFIED: History Card Design (Modern) ===
-    return `<div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 mb-4">
-        <div class="flex justify-between items-start mb-2">
-            <span class="font-semibold text-gray-800 text-base">${request.duration || 'N/A'}</span>
-            <span class="text-xs font-medium px-2.5 py-0.5 rounded-full ${statusColor}">${statusText}</span>
-        </div>
-        <p class="text-sm text-gray-600">${dateString}</p>
-        <p class="text-sm text-gray-500 mt-1"><b>មូលហេតុ:</b> ${request.reason || 'មិនបានបញ្ជាក់'}</p>
-        ${decisionInfo}
-        ${returnInfo}
-        <div class="mt-3 pt-3 border-t border-gray-100">
-            <div class="flex flex-wrap justify-between items-center gap-2">
-                <p class="text-xs text-gray-400">ID: ${request.requestId}</p>
-                <div class="flex items-center space-x-2">
-                    ${showActions ? `
-                        <button data-id="${request.requestId}" data-type="${type}" class="edit-btn p-1.5 text-blue-600 hover:bg-blue-100 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-                        </button>
-                        <button data-id="${request.requestId}" data-type="${type}" class="delete-btn p-1.5 text-red-600 hover:bg-red-100 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                        </button>
-                    ` : ''}
-                    ${invoiceButton}
-                </div>
-            </div>
-            ${returnButton}
-        </div>
-    </div>`; 
+
+
+function renderHistoryCard(request, type) { 
+    if (!request || !request.requestId) return ''; 
+    let statusColor, statusText, decisionInfo = ''; 
+    switch(request.status) { 
+        case 'approved': statusColor = 'bg-green-100 text-green-800'; statusText = 'បានយល់ព្រម'; if (request.decisionAt) decisionInfo = `<p class="text-xs text-green-600 mt-1">នៅម៉ោង: ${Utils.formatFirestoreTimestamp(request.decisionAt, 'time')}</p>`; break; 
+        case 'rejected': statusColor = 'bg-red-100 text-red-800'; statusText = 'បានបដិសធ'; if (request.decisionAt) decisionInfo = `<p class="text-xs text-red-600 mt-1">នៅម៉ោង: ${Utils.formatFirestoreTimestamp(request.decisionAt, 'time')}</p>`; break; 
+        case 'editing': statusColor = 'bg-blue-100 text-blue-800'; statusText = 'កំពុងកែសម្រួល'; break; 
+        default: statusColor = 'bg-yellow-100 text-yellow-800'; statusText = 'កំពុងរង់ចាំ'; 
+    } 
+    const dateString = (request.startDate === request.endDate) ? request.startDate : (request.startDate && request.endDate ? `${request.startDate} ដល់ ${request.endDate}` : 'N/A'); 
+    const showActions = (request.status === 'pending' || request.status === 'editing'); 
+    let returnInfo = ''; 
+    let returnButton = ''; 
+    if (type === 'out') { 
+        if (request.returnStatus === 'បានចូលមកវិញ') returnInfo = `<p class="text-sm font-semibold text-green-700 mt-2">✔️ បានចូលមកវិញ: ${request.returnedAt || ''}</p>`; 
+        else if (request.status === 'approved') returnButton = `<button data-id="${request.requestId}" class="return-btn w-full mt-3 py-2 px-3 bg-green-600 text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-green-700">បញ្ជាក់ចូលមកវិញ</button>`; 
+    } 
+    let invoiceButton = ''; 
+    if (request.status === 'approved') invoiceButton = `<button data-id="${request.requestId}" data-type="${type}" class="invoice-btn mt-3 py-1.5 px-3 bg-indigo-100 text-indigo-700 rounded-md font-semibold text-xs shadow-sm hover:bg-indigo-200 w-full sm:w-auto">ពិនិត្យមើលវិក័យប័ត្រ</button>`; 
+    
+    // === MODIFIED: History Card Design (Glassmorphism) ===
+    return `<div class="bg-white/70 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg p-4 mb-4">
+        <div class="flex justify-between items-start mb-2">
+            <span class="font-semibold text-gray-900 text-base">${request.duration || 'N/A'}</span>
+            <span class="text-xs font-medium px-2.5 py-0.5 rounded-full ${statusColor}">${statusText}</span>
+        </div>
+        <p class="text-sm text-gray-700">${dateString}</p>
+        <p class="text-sm text-gray-600 mt-1"><b>មូលហេតុ:</b> ${request.reason || 'មិនបានបញ្ជាក់'}</p>
+        ${decisionInfo}
+        ${returnInfo}
+        <div class="mt-3 pt-3 border-t border-white/40">
+            <div class="flex flex-wrap justify-between items-center gap-2">
+                <p class="text-xs text-gray-500">ID: ${request.requestId}</p>
+                <div class="flex items-center space-x-2">
+                    ${showActions ? `
+                        <button data-id="${request.requestId}" data-type="${type}" class="edit-btn p-1.5 text-blue-600 hover:bg-blue-100 rounded-full">
+                       <button data-id="${request.requestId}" data-type="${type}" class="edit-btn p-1.5 text-blue-600 hover:bg-blue-100/50 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                        </button>
+                        <button data-id="${request.requestId}" data-type="${type}" class="delete-btn p-1.5 text-red-600 hover:bg-red-100 rounded-full">
+                        <button data-id="${request.requestId}" data-type="${type}" class="delete-btn p-1.5 text-red-600 hover:bg-red-100/50 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                        </button>
+                    ` : ''}
+                    ${invoiceButton}
+                </div>
+            </div>
+            ${returnButton}
+        </div>
+    </div>`; 
 }
 
 
@@ -939,58 +943,62 @@ function renderApproverList(requests, container, pendingCountEl, listType) {
 /**
  * បង្កើត HTML សម្រាប់ Approver Card
  */
+/**
+ * បង្កើត HTML សម្រាប់ Approver Card
+ */
 function renderApproverCard(request, listType) {
-    if (!request || !request.requestId) return '';
-    let statusColor, statusText, actionButtons = '', returnInfo = '';
+    if (!request || !request.requestId) return '';
+    let statusColor, statusText, actionButtons = '', returnInfo = '';
 
-    switch(request.status) {
-        case 'approved':
-            statusColor = 'bg-green-100 text-green-800'; statusText = 'បានយល់ព្រម';
-            if (request.type === 'out' && request.returnStatus === 'បានចូលមកវិញ') {
-                 returnInfo = `<p class="text-xs text-green-600 mt-1 font-semibold">✔️ ចូលវិញ: ${request.returnedAt || 'N/A'}</p>`;
-            }
-            break;
-        case 'rejected':
-            statusColor = 'bg-red-100 text-red-800'; statusText = 'បានបដិសធ';
-            break;
-        case 'editing':
-            statusColor = 'bg-blue-100 text-blue-800'; statusText = 'កំពុងកែសម្រួល';
-            break;
-        default:
-            statusColor = 'bg-yellow-100 text-yellow-800'; statusText = 'កំពុងរង់ចាំ';
-    }
+    switch(request.status) {
+        case 'approved':
+            statusColor = 'bg-green-100 text-green-800'; statusText = 'បានយល់ព្រម';
+            if (request.type === 'out' && request.returnStatus === 'បានចូលមកវិញ') {
+                 returnInfo = `<p class="text-xs text-green-600 mt-1 font-semibold">✔️ ចូលវិញ: ${request.returnedAt || 'N/A'}</p>`;
+            }
+            break;
+        case 'rejected':
+            statusColor = 'bg-red-100 text-red-800'; statusText = 'បានបដិសធ';
+            break;
+        case 'editing':
+            statusColor = 'bg-blue-100 text-blue-800'; statusText = 'កំពុងកែសម្រួល';
+            break;
+        default:
+            statusColor = 'bg-yellow-100 text-yellow-800'; statusText = 'កំពុងរង់ចាំ';
+    }
 
-    if (listType === 'pending' && (request.status === 'pending' || request.status === 'editing')) {
-        actionButtons = `
-            <div class="flex space-x-2 mt-3">
-                <button data-id="${request.requestId}" data-type="${request.type}" data-action="approve" class="action-btn flex-1 py-2 px-3 bg-green-600 text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-green-700">អនុម័ត</button>
-                <button data-id="${request.requestId}" data-type="${request.type}" data-action="reject" class="action-btn flex-1 py-2 px-3 bg-red-600 text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-red-700">បដិសធ</button>
-            </div>
-        `;
-    }
+    if (listType === 'pending' && (request.status === 'pending' || request.status === 'editing')) {
+        actionButtons = `
+            <div class="flex space-x-2 mt-3">
+                <button data-id="${request.requestId}" data-type="${request.type}" data-action="approve" class="action-btn flex-1 py-2 px-3 bg-green-600 text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-green-700">អនុម័ត</button>
+                <button data-id="${request.requestId}" data-type="${request.type}" data-action="reject" class="action-btn flex-1 py-2 px-3 bg-red-600 text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-red-700">បដិសធ</button>
+            </div>
+        `;
+    }
 
-    const requestTypeText = (request.type === 'leave') ? 'ឈប់សម្រាក' : 'ចេញក្រៅ';
-    const decisionTime = request.decisionAt ? Utils.formatFirestoreTimestamp(request.decisionAt) : '';
-    const dateString = (request.startDate === request.endDate) ? request.startDate : `${request.startDate} ដល់ ${request.endDate}`;
+    const requestTypeText = (request.type === 'leave') ? 'ឈប់សម្រាក' : 'ចេញក្រៅ';
+    const decisionTime = request.decisionAt ? Utils.formatFirestoreTimestamp(request.decisionAt) : '';
+    const dateString = (request.startDate === request.endDate) ? request.startDate : `${request.startDate} ដល់ ${request.endDate}`;
 
-    return `
-        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-4">
-            <div class="flex justify-between items-start">
-                <div class="text-sm">
-                    <p class="font-bold text-gray-800">${request.name} (${request.userId})</p>
-                    <p class="text-xs text-gray-500">${request.department || 'N/A'} - ${requestTypeText}</p>
-                </div>
-                <span class="text-xs font-medium px-2 py-0.5 rounded-full ${statusColor}">${statusText}</span>
-            </div>
-            <hr class="my-2 border-gray-100">
-            <p class="text-sm font-semibold text-gray-700">${request.duration || 'N/A'}</p>
-            <p class="text-sm text-gray-600 mt-0.5">🗓️ ${dateString}</p>
-            <p class="text-xs text-gray-500 mt-1"><b>មូលហេតុ:</b> ${request.reason || 'មិនបានបញ្ជាក់'}</p>
-            ${listType === 'history' ? `<p class="text-xs text-gray-400 mt-1">សម្រេចនៅ៖ ${decisionTime}</p>` : ''}
-            ${returnInfo}
-            ${actionButtons}
-        </div>
-    `;
+    // === MODIFIED: Approver Card Design (Glassmorphism) ===
++    return `
++        <div class="bg-white/70 backdrop-blur-lg border border-white/30 rounded-lg shadow-lg p-4 mb-4">
+            <div class="flex justify-between items-start">
+                <div class="text-sm">
++                    <p class="font-bold text-gray-900">${request.name} (${request.userId})</p>
++                    <p class="text-xs text-gray-600">${request.department || 'N/A'} - ${requestTypeText}</p>
+                </div>
+                <span class="text-xs font-medium px-2 py-0.5 rounded-full ${statusColor}">${statusText}</span>
+            </div>
++            <hr class="my-2 border-white/40">
++            <p class="text-sm font-semibold text-gray-800">${request.duration || 'N/A'}</p>
++            <p class="text-sm text-gray-700 mt-0.5">🗓️ ${dateString}</p>
++            <p class="text-xs text-gray-600 mt-1"><b>មូលហេតុ:</b> ${request.reason || 'មិនបានបញ្ជាក់'}</p>
++            ${listType === 'history' ? `<p class="text-xs text-gray-500 mt-1">សម្រេចនៅ៖ ${decisionTime}</p>` : ''}
+            ${returnInfo}
+            ${actionButtons}
+        </div>
+    `;
 }
 
 /**
