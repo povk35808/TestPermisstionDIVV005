@@ -103,16 +103,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (closeInvoiceModalBtn) closeInvoiceModalBtn.addEventListener('click', () => Requests.hideInvoiceModal(invoiceModal, invoiceShareStatus, shareInvoiceBtn));
     if (shareInvoiceBtn) shareInvoiceBtn.addEventListener('click', ()=> Requests.shareInvoiceAsImage(invoiceContent, invoiceContentWrapper, shareInvoiceBtn, invoiceShareStatus, showCustomAlert));
     
-    // === NEW: Announcement Listener ===
+    // === ស្វែងរក Listener នេះ ហើយជំនួសវា ===
     if (announcementCloseBtn) {
         announcementCloseBtn.addEventListener('click', () => {
             if (announcementModal) announcementModal.classList.add('hidden');
-            // យក ID ដែលបានរក្សាទុក ពី dataset
-            const closedId = announcementCloseBtn.dataset.announcementId;
-            if (closedId) {
-                localStorage.setItem(closedId, 'true'); // កំណត់ថា "បានអាន"
-                console.log(`Marked announcement ${closedId} as read.`);
-            }
+            // បានលុប localStorage.setItem ចេញពីទីនេះ ព្រោះសារត្រូវបង្ហាញរាល់ពេល
         });
     }
     // === END: NEW Announcement Listener ===
@@ -461,29 +456,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         signInAnonymously(auth).catch(err => console.error("Error signing in anonymously after logout:", err)); 
     }
     
+    // --- ស្វែងរក function នេះ ហើយកែសម្រួលផ្នែកខាងក្នុង ---
     function showLoggedInState(user) { 
-        // === START: NEW ANNOUNCEMENT LOGIC ===
-        // 1. កំណត់ ID សម្រាប់សារនេះ (ប្តូរ ID នេះ ពេលមានសារថ្មី)
+        // === START: NEW ANNOUNCEMENT LOGIC (កែសម្រួល) ===
+        // 1. កំណត់ ID សម្រាប់សារនេះ
         const ANNOUNCEMENT_ID = 'announcement_09112025_independence_day';
         // 2. ដាក់សាររបស់អ្នកនៅទីនេះ
         const ANNOUNCEMENT_MESSAGE = "សួស្ដីប្អូបនៗទាំងអស់គ្នា ថ្ងៃទី០៩ វិច្ឆការ ២០២៥ នេះជាថ្ងៃនៃពិធីបុណ្យឯករាជ្យជាតិ ខួបលើកទី ៧២ ដែលខាងសាលាមានការឈប់សម្រាកសិក្សា ដូច្នោះការងារក្នុង DI ប្អូនៗត្រូវវេនធ្វើការពេលយប់ត្រូវប្ដូរវេនមកធ្វើការពេលថ្ងៃ ដោយឡែកពេលយប់ DI ត្រូវបិទ។ សូមអរគុណ!!!";
         
-        // 3. ពិនិត្យមើលថា តើ User ធ្លាប់បានអានសារនេះហើយឬនៅ
-        const hasRead = localStorage.getItem(ANNOUNCEMENT_ID);
-        
-        // 4. បើ User មិនទាន់បានអាន (!hasRead) ត្រូវបង្ហាញ Modal
-        if (!hasRead && announcementModal) {
+        // បានលុប 'hasRead' check ដើម្បីឱ្យវាបង្ហាញរាល់ពេល
+        if (announcementModal) { 
             console.log(`Showing announcement: ${ANNOUNCEMENT_ID}`);
             if (announcementMessage) announcementMessage.textContent = ANNOUNCEMENT_MESSAGE;
-            if (announcementCloseBtn) announcementCloseBtn.dataset.announcementId = ANNOUNCEMENT_ID; // រក្សាទុក ID លើប៊ូតុង
+            if (announcementCloseBtn) announcementCloseBtn.dataset.announcementId = ANNOUNCEMENT_ID;
             announcementModal.classList.remove('hidden');
-        } else {
-            console.log(`Announcement ${ANNOUNCEMENT_ID} already read.`);
         }
         // === END: NEW ANNOUNCEMENT LOGIC ===
 
         currentUser = user; 
-        FaceScanner.clearReferenceDescriptor(); 
+        FaceScanner.clearReferenceDescriptor();
         
         // NEW: កំណត់តួនាទី Approver
         isApprover = (user.id === 'D1001'); // ឧទាហរណ៍: បើ ID ស្មើ 'D1001' គឺជា Approver
@@ -715,13 +706,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         );
     });
 
+    // --- ស្វែងរក Listener នេះ ហើយជំនួសវា ---
     if (openOutRequestBtn) openOutRequestBtn.addEventListener('click', () => { 
         if (!currentUser) return showCustomAlert("Error", "សូម Login ជាមុនសិន។"); 
         
         document.getElementById('request-out-user-photo').src = currentUser.photo || 'https://placehold.co/60x60/e2e8f0/64748b?text=User';
         document.getElementById('request-out-user-name').textContent = currentUser.name;
         document.getElementById('request-out-user-id').textContent = currentUser.id;
-        document.getElementById('request-out-user-department').textContent = currentUser.department || 'មិនមាន';
+        
+        // === START: FIX (កែបញ្ហា Crash) ===
+        // ប្រើ ID 'request-leave-user-department' ឱ្យដូចអ្វីដែលមានក្នុង HTML របស់អ្នក
+        document.getElementById('request-leave-user-department').textContent = currentUser.department || 'មិនមាន';
+        // === END: FIX ===
         
         if (outDurationSearchInput) outDurationSearchInput.value = ''; 
         if (outReasonSearchInput) outReasonSearchInput.value = ''; 
