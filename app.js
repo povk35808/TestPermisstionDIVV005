@@ -168,12 +168,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     if (inAppWarning) inAppWarning.classList.remove('hidden'); 
                     if (modelStatusEl) modelStatusEl.textContent = 'សូមបើកក្នុង Browser ពេញលេញ'; 
                     if (dataLoadingIndicator) dataLoadingIndicator.classList.add('hidden'); 
-    _C0, ...}
                             } 
                         } catch (e) { 
                             localStorage.removeItem('leaveAppUser'); 
                         } 
-            _C1, ...}
             } else { 
                 console.log("Firebase Auth: No user signed in. Attempting anonymous sign-in..."); 
                 signInAnonymously(auth).catch(anonError => { 
@@ -878,7 +876,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             FaceScanner.stopAdvancedFaceAnalysis(); 
 
             const onSuccess = () => {
-    _C3, ...}
                 handleReturnFaceScanSuccess(); 
             };
 
@@ -970,9 +967,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 decisionTime: invoiceDecisionTime,
                 reqId: invoiceRequestId,
                 returnInfo: invoiceReturnInfo,
-s, ...}
                 returnTime: invoiceReturnTime,
-        _C5, ...}
             },
             showCustomAlert
         );
@@ -985,7 +980,6 @@ s, ...}
             console.log("Opening Approver Dashboard...");
             navigateTo('page-approver');
             showApproverTab('pending'); // បើក Tab Pending ដំបូង
-D, ...}
         });
     }
 
