@@ -878,7 +878,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             FaceScanner.stopAdvancedFaceAnalysis(); 
 
             const onSuccess = () => {
-    _C3, ...}
+    }
                 handleReturnFaceScanSuccess(); 
             };
 
@@ -970,9 +970,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 decisionTime: invoiceDecisionTime,
                 reqId: invoiceRequestId,
                 returnInfo: invoiceReturnInfo,
-s, ...}
+}
                 returnTime: invoiceReturnTime,
-        _C5, ...}
+        }
             },
             showCustomAlert
         );
@@ -985,7 +985,7 @@ s, ...}
             console.log("Opening Approver Dashboard...");
             navigateTo('page-approver');
             showApproverTab('pending'); // បើក Tab Pending ដំបូង
-D, ...}
+}
         });
     }
 
